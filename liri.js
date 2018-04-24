@@ -25,17 +25,17 @@ let commandLinearg = nodeArgs[2];
 //Spotify
 function spotSong (song) {
   spotify.search ({ type: 'track', query: song, limit: 5}, function (err, data) {
-
+    for(let i= 0; i < data.tracks.items.length; i++){
     if (!error) {
-      let songInfo = data.tracks.items[0];
-      console.log(data)
+      let songInfo = data.tracks.items[i];
+      console.log("Artist: " + songInfo.artists[0].name);
+     }
+      else if (error){
+      return console.log('Error occurred: ');
     }
-    else if (error){
-    return console.log('Error occurred: ');
-    }
-  })
+  }
+})
 }
-// .tracks.items[0]
 
 //Twitter
 function twentyTweets() {
@@ -89,5 +89,4 @@ else if (commandLinearg === 'spotify-this-song' + song) {
 }
 else if (commandLinearg === 'do-what-it-says') {
    return doIt()
-  
 }
